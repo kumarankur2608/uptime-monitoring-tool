@@ -34,17 +34,17 @@ services:
       vite:
         condition: service_started
     ports:
-      - "8080:80"
+      - "8082:80"
 
   vite:
     image: node:22-alpine
     working_dir: /var/www/html
-    command: sh -lc "npm install && npm run dev -- --host 0.0.0.0 --port 5173"
+    command: sh -lc "npm install && npm run dev -- --host 0.0.0.0 --port 5174"
     volumes:
       - .:/var/www/html
       - node_modules:/var/www/html/node_modules
     ports:
-      - "5173:5173"
+      - "5174:5174"
 
   queue:
     image: uptime-monitor-app
@@ -75,7 +75,7 @@ services:
   mysql:
     image: mysql:8.4
     ports:
-      - "33060:3306"
+      - "33061:3306"
     environment:
       MYSQL_DATABASE: uptime_monitor
       MYSQL_USER: uptime_monitor
@@ -93,7 +93,7 @@ services:
   redis:
     image: redis:7-alpine
     ports:
-      - "63790:6379"
+      - "63791:6379"
     volumes:
       - redis-data:/data
     healthcheck:
@@ -105,8 +105,8 @@ services:
   mailpit:
     image: axllent/mailpit:v1.24
     ports:
-      - "8025:8025"
-      - "1025:1025"
+      - "8026:8025"
+      - "1026:1025"
 
   phpmyadmin:
     image: phpmyadmin
@@ -117,7 +117,7 @@ services:
       PMA_HOST: mysql
       PMA_PORT: 3306
     ports:
-      - "8081:80"
+      - "8083:80"
 
 volumes:
   mysql-data:
